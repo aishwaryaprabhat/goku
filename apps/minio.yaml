@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/minio/minio'
+    path: helm/minio
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: persistence.size
+          value: 15Gi
+        - name: resources.requests.memory
+          value: 2Gi
+        - name: replicas
+          value: '3'
+        - name: mode
+          value: standalone
+        - name: securityContext.fsGroup
+          value: '1001'
+        - name: securityContext.runAsGroup
+          value: '1001'
+        - name: securityContext.runAsUser
+          value: '1001'
+        - name: mountPath
+          value: /data
+        - name: rootPassword
+          value: password
+        - name: rootUser
+          value: admin
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: minio
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

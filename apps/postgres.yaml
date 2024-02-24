@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    targetRevision: 13.1.5
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: primary.persistence.size
+          value: 1Gi
+        - name: readReplicas.persistence.size
+          value: 1Gi
+        - name: backup.cronjob.storage.size
+          value: 1Gi
+        - name: primary.persistence.enabled
+          value: 'true'
+        - name: volumePermissions.enabled
+          value: 'true'
+        - name: auth.password
+          value: password
+        - name: auth.postgresPassword
+          value: password
+        - name: auth.replicationPassword
+          value: password
+    chart: postgresql
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: postgresql
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
