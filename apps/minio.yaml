@@ -22,11 +22,11 @@ spec:
         - name: mode
           value: standalone
         - name: securityContext.fsGroup
-          value: '1001'
+          value: '1000'
         - name: securityContext.runAsGroup
-          value: '1001'
+          value: '1000'
         - name: securityContext.runAsUser
-          value: '1001'
+          value: '1000'
         - name: mountPath
           value: /data
         - name: rootPassword
