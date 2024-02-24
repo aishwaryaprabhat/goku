@@ -1,0 +1,1 @@
+kubectl apply -f k8s/pv-5gi.yaml
