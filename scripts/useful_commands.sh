@@ -8,3 +8,4 @@ done
 
 kubectl -n argocd port-forward svc/argocd-server 8080:80 &
 kubectl -n minio port-forward svc/minio-console 9001 &
+kubectl -n mlflow port-forward svc/mlflow 5000 &
