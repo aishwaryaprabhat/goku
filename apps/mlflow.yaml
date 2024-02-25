@@ -30,15 +30,13 @@ spec:
           value: placeholder
         - name: artifactRoot.s3.awsSecretAccessKey
           value: placeholder
-        - name: artifactRoot.s3.path
-          value: mlflow
         - name: image.repository
           value: aishwaryaprabhat/mlflow
         - name: image.tag
-          value: v2.10.2
+          value: v2.10.2.1
       values: |-
         extraEnvVars:
-          MLFLOW_S3_ENDPOINT_URL: http://minio.minio.svc:9001
+          MLFLOW_S3_ENDPOINT_URL: http://minio.minio.svc:9000
     chart: mlflow
   destination:
     server: 'https://kubernetes.default.svc'

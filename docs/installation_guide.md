@@ -34,8 +34,44 @@ kubectl -n argocd port-forward svc/argocd-server 8080:80 &
 
 ## 4. MLFlow Setup
 1. Ensure that MinIO and Postgres are setup as specified in steps 2 and 3 above
-2. On MinIO create a new bucket called "mlflow" ![](assets/mlflow_bucket.png)
-3. Run the following commands to setup the "mlflow" database in Postgres
+2. Navigate to the MinIO console and create a new bucket called "mlflow" ![](assets/mlflow_bucket.png)
+3. Create a new policy
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mlflow"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteObject",
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mlflow/*"
+            ]
+        }
+    ]
+}
+```
+![](../docs/assets/create_policy_minio.png)
+4. On MinIO create a new user and select the policy you just created to associate it with the new user you are creating
+![](../docs/assets/create_user_minio.png)
+5. Next, create a new access key for this user
+![](../docs/assets/ak1_minio.png)
+![](../docs/assets/ak2_minio.png)
+Record/download this access key as we will need to authenticate MLflow server against the S3 bucket later on.
+6. Run the following commands to setup the "mlflow" database in Postgres
 ```shell
 kubectl -n postgresql port-forward svc/postgres-postgresql 5432 &
 psql -h localhost -p 5432 -U postgres
@@ -43,9 +79,11 @@ psql -h localhost -p 5432 -U postgres
 CREATE DATABASE mlflow;
 \q
 ```
-4. Run the command `kubectl apply -f apps/mlflow.yaml`
-5. Navigate to ArgoCD UI, select the MLFlow app and click on "Sync">"Synchronize"
-6. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
+7. Run the command `kubectl apply -f apps/mlflow.yaml`
+8. Navigate to ArgoCD UI, navigate to the MLFlow app and click on "Details" then "Edit" to replace the placeholder values of the artifactRoot.s3.awsAccessKeyId and artifactRoot.s3.awsSecretAccessKey with the accesskey credentials you created in the MinIO steps above
+![](../docs/assets/mlflow_creds.png)
+9. Next, click on "Sync"
+9. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
 ![](assets/mlflow_argocd.png)
-7. You can use `kubectl -n mlflow port-forward svc/mlflow 5000` to port-forward to the MLFlow server and UI
+10. You can use `kubectl -n mlflow port-forward svc/mlflow 5000` to port-forward to the MLFlow server and UI
 ![](assets/mlflow.png)

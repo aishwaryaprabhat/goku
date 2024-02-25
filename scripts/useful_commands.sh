@@ -8,4 +8,10 @@ done
 
 kubectl -n argocd port-forward svc/argocd-server 8080:80 &
 kubectl -n minio port-forward svc/minio-console 9001 &
+kubectl -n minio port-forward svc/minio 9000 &
 kubectl -n mlflow port-forward svc/mlflow 5000 &
+kubectl -n postgresql port-forward svc/postgres-postgresql 5432 &
+
+# psql -h localhost -p 5432 -U postgresw
+# kubectl -n mlflow delete pods --all --grace-period=0 --force
+# fuser -k 5000/tcp && kubectl -n mlflow port-forward svc/mlflow 5000 &
