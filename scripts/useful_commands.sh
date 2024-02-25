@@ -11,6 +11,7 @@ kubectl -n minio port-forward svc/minio-console 9001 &
 kubectl -n minio port-forward svc/minio 9000 &
 kubectl -n mlflow port-forward svc/mlflow 5000 &
 kubectl -n postgresql port-forward svc/postgres-postgresql 5432 &
+kubectl -n argowf port-forward svc/argowf-argo-workflows-server 2746 &
 
 # psql -h localhost -p 5432 -U postgresw
 # kubectl -n mlflow delete pods --all --grace-period=0 --force

@@ -83,7 +83,21 @@ CREATE DATABASE mlflow;
 8. Navigate to ArgoCD UI, navigate to the MLFlow app and click on "Details" then "Edit" to replace the placeholder values of the artifactRoot.s3.awsAccessKeyId and artifactRoot.s3.awsSecretAccessKey with the accesskey credentials you created in the MinIO steps above
 ![](../docs/assets/mlflow_creds.png)
 9. Next, click on "Sync"
-9. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
+10. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
 ![](assets/mlflow_argocd.png)
-10. You can use `kubectl -n mlflow port-forward svc/mlflow 5000` to port-forward to the MLFlow server and UI
+11. You can use `kubectl -n mlflow port-forward svc/mlflow 5000` to port-forward to the MLFlow server and UI
 ![](assets/mlflow.png)
+
+## 5. ArgoWorkflows Setup
+1. To setup ArgoWF, simply run `kubectl apply -f apps/argowf.yaml`
+2. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
+3. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
+![](assets/argowf_argocd.png)
+4. Run the following command to obtain admin token required for login in the coming steps
+`kubectl -n argowf exec -it $(kubectl get pods -n argowf | grep argo-workflows-server | awk '{print $1}') -- argo auth token`
+5. To view the ArgoWF UI, port-forward using `kubectl -n argowf port-forward svc/argowf-argo-workflows-server 2746`
+6. To login, stick the Bearer token obtained in and click "Login"
+![](assets/argowf_login.png)
+Voila!
+![](assets/argowf_landing.png)
+

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argowf
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/argoproj/argo-helm'
+    path: charts/argo-workflows
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: workflow.namespace
+          value: argowf
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: argowf
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
