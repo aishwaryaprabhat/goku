@@ -1,0 +1,3 @@
+transformers==4.36.1
+accelerate==0.25.0
+boto3

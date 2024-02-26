@@ -1,0 +1,5 @@
+FROM ghcr.io/mlflow/mlflow:v2.10.2
+COPY src/requirements.txt .
+RUN pip install -r requirements.txt
+COPY src/model_ingestion/download_model.py .
+COPY src/model_ingestion/log_model.py .

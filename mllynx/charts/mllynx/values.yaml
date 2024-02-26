@@ -1,0 +1,10 @@
+model-ingestion:
+  namespace: "mllynx"
+  image: ""
+  huggingfaceRepo: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+  modelName: "Mixtral-8x7B-Instruct-v0.1"
+  mlflowExperimentName: "mistralai"
+  mlflowTrackingUri: "http://mlflow.mlflow.svc:5000"
+  awsAccessKeyId: "" # Base64 encoded AWS Access Key ID
+  awsSecretAccessKey: "" # Base64 encoded AWS Secret Access Key
+
