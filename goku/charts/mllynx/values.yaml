@@ -1,5 +1,5 @@
 model-ingestion:
-  namespace: "mllynx"
+  namespace: "goku"
   image: ""
   huggingfaceRepo: "mistralai/Mixtral-8x7B-Instruct-v0.1"
   modelName: "Mixtral-8x7B-Instruct-v0.1"

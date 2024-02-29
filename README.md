@@ -1,7 +1,7 @@
-# MLLynx
-A reference architecture for managing LLMs on Kubernetes using OSS tooling
+# GOKU (GenAI Ops on Kubernetes)
+A reference architecture for performing GenAI Ops using Kubernetes-native open source tools
 
-![](docs/assets/lynxicon.webp)
+![](docs/assets/goku.webp)
 
 
 ## Installation

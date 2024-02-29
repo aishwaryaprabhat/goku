@@ -1,6 +1,6 @@
-## Building mllynx image
+## Building goku image
 ```shell
-docker build . -f docker/Dockerfile.mllynx -t aishwaryaprabhat/mllynx:v0.1.0
+docker build . -f docker/Dockerfile.goku -t aishwaryaprabhat/goku:v0.1.0
 ```
 
 ## Building mlflow image
