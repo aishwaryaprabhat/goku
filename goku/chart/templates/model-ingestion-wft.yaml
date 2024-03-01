@@ -29,8 +29,8 @@ spec:
           gcOnSuccess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
-        command: ["{{ '{{inputs.parameters.command}}' }}"]
-        args: ["{{ '{{inputs.parameters.args}}' }}"]
+        command: [{{ "{{inputs.parameters.command}}" | quote }}]
+        args: [{{ "{{inputs.parameters.args}}" | quote }}]
         env:
           - name: HF_MODEL_NAME
             value: "{{workflow.parameters.HF_MODEL_NAME}}"
