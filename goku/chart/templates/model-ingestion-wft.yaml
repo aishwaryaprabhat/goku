@@ -33,7 +33,7 @@ spec:
         args: [{{ "{{inputs.parameters.args}}" | quote }}]
         env:
           - name: HF_MODEL_NAME
-            value: "{{workflow.parameters.HF_MODEL_NAME}}"
+            value: {{ "{{workflow.parameters.HF_MODEL_NAME}}" | quote }}
           - name: MLFLOW_TRACKING_URI
             value: {{ .Values.modelIngestion.MLFLOW_TRACKING_URI }}
           - name: MLFLOW_EXPERIMENT_NAME
