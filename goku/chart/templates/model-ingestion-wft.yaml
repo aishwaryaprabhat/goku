@@ -12,17 +12,40 @@ spec:
     labelSelector:
       matchLabels:
         gcOnSucess: "true"
+  entrypoint: dag
   templates:
-    - name: hello-world
+    - name: preflight-check
       metadata: 
         labels:
           gcOnSucess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
         command: [echo]
-        args: ["Hello World"]
+        args: ["preflight check"]
+    - name: ingest-model
+      metadata: 
+        labels:
+          gcOnSucess: "true"
+      container:
+        image: {{ .Values.modelIngestion.image }}
+        command: [echo]
+        args: ["postflight check"]
+    - name: postflight-check
+      metadata: 
+        labels:
+          gcOnSucess: "true"
+      container:
+        image: {{ .Values.modelIngestion.image }}
+        command: [echo]
+        args: ["postflight check"]
     - name: dag
       dag:
         tasks:
-          - name: hello-world-task
-            template: hello-world
+          - name: preflight-check
+            template: preflight-check
+          - name: ingest-model
+            template: ingest-model
+            dependencies: ['preflight-check']
+          - name: postflight-check
+            template: postflight-check
+            dependencies: ['ingest-model']
