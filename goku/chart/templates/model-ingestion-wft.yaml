@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: {{ .Values.modelIngestion.resourceName }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  ttlStrategy:
+    secondsAfterCompletion: 3600  # Set the TTL for workflow completion
+  podGC:
+    strategy: OnPodSuccess  # Define garbage collection strategy
+    ttlSecondsAfterFinished: 3600 # Pods are cleaned up 1 hour after the workflow succeeds
+    labelSelector:
+      matchLabels:
+        gc: "true"
+  templates:
+    - name: hello-world
+      metadata: 
+      container:
+        image: {{ .Values.modelIngestion.image }}
+        command: [echo]
+        args: ["Hello World"]
+    - name: dag
+      dag:
+        tasks:
+          - name: hello-world-task
+            template: hello-world

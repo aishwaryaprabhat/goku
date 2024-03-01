@@ -2,3 +2,7 @@ minio:
   resourceName: "minio-creds"
   awsAccessKeyId: "placeholder"
   awsSecretAccessKey: "placeholder"
+
+modelIngestion:
+  resourceName: "model-ingestion"
+  image: "placeholder"
