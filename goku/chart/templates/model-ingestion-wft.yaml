@@ -62,7 +62,7 @@ spec:
                 - name: args
                   value: "-c verify_mlflow.py"
           - name: ingest-model
-            dependencies: ["preflight-check-minio", "preflight-check-mlflow"]
+            dependencies: ["preflight-check-mlflow"]
             template: general-template
             arguments:
               parameters:
