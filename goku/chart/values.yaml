@@ -6,7 +6,7 @@ minio:
 modelIngestion:
   resourceName: "model-ingestion"
   image: "aishwaryaprabhat/goku:v0.1.0"
-  MINIO_URI: "http://minio.minio.svc:9000"
+  MLFLOW_S3_ENDPOINT_URL: "http://minio.minio.svc:9000"
   HF_MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
   MLFLOW_TRACKING_URI: "http://mlflow.mlflow.svc:5000"
   MLFLOW_EXPERIMENT_NAME: hf-model-ingest

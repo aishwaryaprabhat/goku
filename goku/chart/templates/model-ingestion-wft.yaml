@@ -38,8 +38,8 @@ spec:
             value: {{ .Values.modelIngestion.MLFLOW_TRACKING_URI }}
           - name: MLFLOW_EXPERIMENT_NAME
             value: {{ .Values.modelIngestion.MLFLOW_EXPERIMENT_NAME }}
-          - name: MINIO_URI
-            value: {{ .Values.modelIngestion.MINIO_URI }}
+          - name: MLFLOW_S3_ENDPOINT_URL
+            value: {{ .Values.modelIngestion.MLFLOW_S3_ENDPOINT_URL }}
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
