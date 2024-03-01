@@ -1,5 +1,5 @@
-# GOKU (GenAI Ops on Kubernetes)
-A reference architecture for performing GenAI Ops using Kubernetes-native open source tools
+# GOKU: <u>G</u>enAI<u>O</u>ps on <u>Ku</u>bernetes
+A reference architecture for performing Generative AI Operations (aka GenAIOp) using Kubernetes-native open source tools
 
 ![](docs/assets/goku.webp)
 
