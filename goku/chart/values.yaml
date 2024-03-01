@@ -5,4 +5,4 @@ minio:
 
 modelIngestion:
   resourceName: "model-ingestion"
-  image: "placeholder"
+  image: "alpine:latest"

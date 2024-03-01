@@ -11,10 +11,12 @@ spec:
     ttlSecondsAfterFinished: 3600 # Pods are cleaned up 1 hour after the workflow succeeds
     labelSelector:
       matchLabels:
-        gc: "true"
+        gcOnSucess: "true"
   templates:
     - name: hello-world
       metadata: 
+        labels:
+          gcOnSucess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
         command: [echo]
