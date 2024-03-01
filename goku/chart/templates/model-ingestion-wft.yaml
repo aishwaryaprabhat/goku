@@ -4,49 +4,77 @@ metadata:
   name: {{ .Values.modelIngestion.resourceName }}
   namespace: {{ .Release.Namespace }}
 spec:
+  entrypoint: dag
+  arguments:
+    parameters:
+      - name: HF_MODEL_NAME
+        value: "Mistral-7B-Instruct-v0.2"  # Default value can be set here if needed
   ttlStrategy:
-    secondsAfterCompletion: 3600  # Set the TTL for workflow completion
+    secondsAfterCompletion: 3600
   podGC:
-    strategy: OnPodSuccess  # Define garbage collection strategy
-    ttlSecondsAfterFinished: 3600 # Pods are cleaned up 1 hour after the workflow succeeds
+    strategy: OnPodSuccess
+    ttlSecondsAfterFinished: 360
     labelSelector:
       matchLabels:
-        gcOnSucess: "true"
-  entrypoint: dag
+        gcOnSuccess: "true"
   serviceAccountName: {{ .Values.serviceAccount.resourceName }}
   templates:
-    - name: preflight-check
+    - name: general-template
+      inputs:
+        parameters:
+          - name: command
+          - name: args
       metadata: 
         labels:
-          gcOnSucess: "true"
+          gcOnSuccess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
-        command: [echo]
-        args: ["preflight check"]
-    - name: ingest-model
-      metadata: 
-        labels:
-          gcOnSucess: "true"
-      container:
-        image: {{ .Values.modelIngestion.image }}
-        command: [echo]
-        args: ["postflight check"]
-    - name: postflight-check
-      metadata: 
-        labels:
-          gcOnSucess: "true"
-      container:
-        image: {{ .Values.modelIngestion.image }}
-        command: [echo]
-        args: ["postflight check"]
+        command: ["{{inputs.parameters.command}}"]
+        args: ["{{inputs.parameters.args}}"]
+        env:
+          - name: HF_MODEL_NAME
+            value: "{{workflow.parameters.HF_MODEL_NAME}}"
+          - name: MLFLOW_TRACKING_URI
+            value: {{ .Values.modelIngestion.MLFLOW_TRACKING_URI }}
+          - name: MLFLOW_EXPERIMENT_NAME
+            value: {{ .Values.modelIngestion.MLFLOW_EXPERIMENT_NAME }}
+          - name: MINIO_URI
+            value: {{ .Values.modelIngestion.MINIO_URI }}
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.minio.resourceName }}
+                key: awsAccessKeyId
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.minio.resourceName }}
+                key: awsSecretAccessKey
     - name: dag
       dag:
         tasks:
-          - name: preflight-check
-            template: preflight-check
+          - name: preflight-check-minio
+            template: general-template
+            arguments:
+              parameters:
+                - name: command
+                  value: "python"
+                - name: args
+                  value: "-c verify_minio.py"
+          - name: preflight-check-mlflow
+            template: general-template
+            arguments:
+              parameters:
+                - name: command
+                  value: "python"
+                - name: args
+                  value: "-c verify_mlflow.py"
           - name: ingest-model
-            template: ingest-model
-            dependencies: ['preflight-check']
-          - name: postflight-check
-            template: postflight-check
-            dependencies: ['ingest-model']
+            dependencies: ["preflight-check-minio", "preflight-check-mlflow"]
+            template: general-template
+            arguments:
+              parameters:
+                - name: command
+                  value: "echo"
+                - name: args
+                  value: "Ingesting model..."
