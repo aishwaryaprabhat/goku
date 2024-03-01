@@ -8,10 +8,10 @@ modelIngestion:
   image: "alpine:latest"
 
 serviceAccount:
-  name: goku-sa
+  resourceName: goku-sa
 
 role:
-  name: goku-role
+  resourceName: goku-role
 
 roleBinding:
-  name: goku-rolebinding
+  resourceName: goku-rolebinding

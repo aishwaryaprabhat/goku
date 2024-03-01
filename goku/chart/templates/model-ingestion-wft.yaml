@@ -13,7 +13,7 @@ spec:
       matchLabels:
         gcOnSucess: "true"
   entrypoint: dag
-  serviceAccountName: "goku-sa"
+  serviceAccountName: {{ .Values.serviceAccount.resourceName }}
   templates:
     - name: preflight-check
       metadata: 
