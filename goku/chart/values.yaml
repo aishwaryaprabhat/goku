@@ -1,0 +1,3 @@
+minio:
+  awsAccessKeyId: "placeholder"
+  awsSecretAccessKey: "placeholder"
