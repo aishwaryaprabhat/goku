@@ -1,3 +1,4 @@
 minio:
+  resourceName: "minio-creds"
   awsAccessKeyId: "placeholder"
   awsSecretAccessKey: "placeholder"
