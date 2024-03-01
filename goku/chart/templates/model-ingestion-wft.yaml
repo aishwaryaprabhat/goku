@@ -53,14 +53,6 @@ spec:
     - name: dag
       dag:
         tasks:
-          - name: preflight-check-minio
-            template: general-template
-            arguments:
-              parameters:
-                - name: command
-                  value: "python"
-                - name: args
-                  value: "-c verify_minio.py"
           - name: preflight-check-mlflow
             template: general-template
             arguments:
