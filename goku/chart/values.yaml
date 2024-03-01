@@ -6,3 +6,12 @@ minio:
 modelIngestion:
   resourceName: "model-ingestion"
   image: "alpine:latest"
+
+serviceAccount:
+  name: goku-sa
+
+role:
+  name: goku-role
+
+roleBinding:
+  name: goku-rolebinding
