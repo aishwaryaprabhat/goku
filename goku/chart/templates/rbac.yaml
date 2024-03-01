@@ -10,9 +10,12 @@ metadata:
   name: {{ .Values.role.resourceName }}
   namespace: {{ .Release.Namespace }}
 rules:
-- apiGroups: ["argoproj.io"]
-  resources: ["workflows", "workflowtemplates", "pods"]
-  verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["*"] # Allows all actions
+  - apiGroups: ["argoproj.io"] # This is the common API group for Argo Workflows, adjust if different
+    resources: ["workflows", "workflowtemplates"]
+    verbs: ["*"] # Allows all actions
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
