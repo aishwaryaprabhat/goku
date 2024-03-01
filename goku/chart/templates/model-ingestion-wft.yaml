@@ -44,12 +44,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.minio.resourceName }}
-                key: awsAccessKeyId
+                key: AWS_ACCESS_KEY_ID
           - name: AWS_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
                 name: {{ .Values.minio.resourceName }}
-                key: awsSecretAccessKey
+                key: AWS_SECRET_ACCESS_KEY
     - name: dag
       dag:
         tasks:
