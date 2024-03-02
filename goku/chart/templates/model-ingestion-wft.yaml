@@ -60,7 +60,7 @@ spec:
             template: general-template
             arguments:
               parameters:
-                - name: 'python'
-                  value: "echo"
-                - name: 'ingest_model.py'
-                  value: "Ingesting model..."
+                - name: command
+                  value: 'python'
+                - name: args
+                  value: 'ingest_model.py --model $HF_MODEL_NAME'
