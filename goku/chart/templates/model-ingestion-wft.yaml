@@ -8,7 +8,7 @@ spec:
   arguments:
     parameters:
       - name: HF_MODEL_NAME
-        value: "Mistral-7B-Instruct-v0.2"  # Default value can be set here if needed
+        value: 'google/gemma-2b-it'  # Default value can be set here if needed
   ttlStrategy:
     secondsAfterCompletion: 3600
   podGC:
@@ -19,18 +19,15 @@ spec:
         gcOnSuccess: "true"
   serviceAccountName: {{ .Values.serviceAccount.resourceName }}
   templates:
-    - name: general-template
+    - name: ingest-model
       inputs:
-        parameters:
-          - name: command
-          - name: args
       metadata: 
         labels:
           gcOnSuccess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
-        command: [{{ "{{inputs.parameters.command}}" | quote }}]
-        args: [{{ "{{inputs.parameters.args}}" | quote }}]
+        command: python
+        args: ["ingest_model.py --model ${HF_MODEL_NAME}"]
         env:
           - name: HF_MODEL_NAME
             value: {{ "{{workflow.parameters.HF_MODEL_NAME}}" | quote }}
@@ -57,10 +54,4 @@ spec:
       dag:
         tasks:
           - name: ingest-model
-            template: general-template
-            arguments:
-              parameters:
-                - name: command
-                  value: 'python'
-                - name: args
-                  value: 'ingest_model.py --model $HF_MODEL_NAME'
+            template: ingest-model
