@@ -6,7 +6,7 @@ ingestionSecrets:
 
 modelIngestion:
   resourceName: "model-ingestion"
-  image: "aishwaryaprabhat/goku:v0.1.1"
+  image: "aishwaryaprabhat/goku:v0.1.2"
   MLFLOW_S3_ENDPOINT_URL: "http://minio.minio.svc:9000"
   MLFLOW_TRACKING_URI: "http://mlflow.mlflow.svc:5000"
 
