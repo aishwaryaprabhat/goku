@@ -26,7 +26,7 @@ spec:
           gcOnSuccess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
-        command: python
+        command: "python"
         args: ["ingest_model.py --model ${HF_MODEL_NAME}"]
         env:
           - name: HF_MODEL_NAME
