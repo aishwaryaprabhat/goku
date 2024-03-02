@@ -1,15 +1,14 @@
-minio:
-  resourceName: "minio-creds"
+ingestionSecrets:
+  resourceName: "ingestion-creds"
   awsAccessKeyId: "placeholder"
   awsSecretAccessKey: "placeholder"
+  huggingfaceAPIToken: "placeholder"
 
 modelIngestion:
   resourceName: "model-ingestion"
   image: "aishwaryaprabhat/goku:v0.1.0"
   MLFLOW_S3_ENDPOINT_URL: "http://minio.minio.svc:9000"
-  HF_MODEL_NAME: "mistralai/Mistral-7B-Instruct-v0.2"
   MLFLOW_TRACKING_URI: "http://mlflow.mlflow.svc:5000"
-  MLFLOW_EXPERIMENT_NAME: hf-model-ingest
 
 serviceAccount:
   resourceName: goku-sa

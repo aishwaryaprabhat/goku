@@ -73,6 +73,10 @@ kubectl -n argocd port-forward svc/argocd-server 8080:80 &
 Record/download this access key as we will need to authenticate MLflow server against the S3 bucket later on.
 6. Run the following commands to setup the "mlflow" database in Postgres
 ```shell
+# install psql
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
 kubectl -n postgresql port-forward svc/postgres-postgresql 5432 &
 psql -h localhost -p 5432 -U postgres
 #Enter password "password" when prompted
@@ -80,7 +84,7 @@ CREATE DATABASE mlflow;
 \q
 ```
 7. Run the command `kubectl apply -f apps/mlflow.yaml`
-8. Navigate to ArgoCD UI, navigate to the MLFlow app and click on "Details" then "Edit" to replace the placeholder values of the artifactRoot.s3.awsAccessKeyId and artifactRoot.s3.awsSecretAccessKey with the accesskey credentials you created in the MinIO steps above
+8. Navigate to ArgoCD UI, navigate to the MLFlow app and click on "Details" then "Edit" then "Parameters" tab to replace the placeholder values of the artifactRoot.s3.awsAccessKeyId and artifactRoot.s3.awsSecretAccessKey with the accesskey credentials you created in the MinIO steps above
 ![](../docs/assets/mlflow_creds.png)
 9. Next, click on "Sync"
 10. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
