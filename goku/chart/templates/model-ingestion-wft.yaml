@@ -27,7 +27,7 @@ spec:
       container:
         image: {{ .Values.modelIngestion.image }}
         command: ["/bin/sh", "-c"]
-        args: ["python ingest_model.py --model ${HUGGINGFACE_API_TOKEN}"]
+        args: ["python ingest_model.py --model ${HF_MODEL_NAME}"]
         env:
           - name: HF_MODEL_NAME
             value: {{ "{{workflow.parameters.HF_MODEL_NAME}}" | quote }}
