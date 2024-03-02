@@ -26,8 +26,8 @@ spec:
           gcOnSuccess: "true"
       container:
         image: {{ .Values.modelIngestion.image }}
-        command: "python"
-        args: ["ingest_model.py --model ${HF_MODEL_NAME}"]
+        command: ["/bin/sh", "-c"]
+        args: ["python ingest_model.py --model ${HUGGINGFACE_API_TOKEN}"]
         env:
           - name: HF_MODEL_NAME
             value: {{ "{{workflow.parameters.HF_MODEL_NAME}}" | quote }}
