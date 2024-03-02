@@ -1,8 +1,5 @@
 # Installation Guide
 
-## 0. Prerequisites
-ToDo
-
 ## 1. Cluster Setup
 1. Setup the Kubernetes cluster using [kubeadm](setup_k8s.md)
 2. Setup argocd by running the [argocd installation script](../scripts/setup_argocd.sh). `bash scripts/setup_argocd.sh` should get the job done.
@@ -104,4 +101,10 @@ CREATE DATABASE mlflow;
 ![](assets/argowf_login.png)
 Voila!
 ![](assets/argowf_landing.png)
+
+## 6. GOKU setup
+1. Run the command `kubectl apply -f apps/goku.yaml`
+2. Navigate to ArgoCD UI, navigate to the goku app and click on "Details" then "Edit" then "Parameters" tab to replace the placeholder values with the correct values
+3. Next, click on "Sync"
+4. Observe to ensure that everything gets setup correctly
 
