@@ -20,7 +20,7 @@ def ingest_model(model_name):
     tokenizer.save_pretrained(temp_dir)
     model.save_pretrained(temp_dir)
 
-    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+    mlflow.set_tracking_uri(os.getenv('MLFLOW_TRACKING_URI'))
     mlflow.set_experiment(experiment_name)
     
     with mlflow.start_run(run_name=run_name):
