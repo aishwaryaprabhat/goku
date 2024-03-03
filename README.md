@@ -10,7 +10,10 @@ For installation, follow the steps provided in [the setup doc](docs/installation
 ## Features
 ### Model Ingestion
 ![](docs/assets/architecture/model_ingestion.png)
-GOKU uses a customisable Argo Workflows template to download models from Hugging Face and ingest them into MLFlow. To run the model ingestion with the default image, follow the following steps:
+GOKU uses a customisable Argo Workflows template to download models from Hugging Face and ingest them into MLFlow.
+<details>
+<summary>How to run</summary>
+To run the model ingestion with the default image, follow the following steps:
 1. Navigate to the Argo Workflows UI (see steps in [the setup doc](docs/installation_guide.md) if unsure)
 2. Enter the "goku" namespace and click on "SUBMIT NEW WORKFLOW"
 3. Select "model-ingestion" as the template to be used
@@ -20,3 +23,4 @@ GOKU uses a customisable Argo Workflows template to download models from Hugging
 ![](docs/assets/screenshots/mi_2.png)
 6. Once the workflow completes successfully, you should be able to see the model files saved as artifacts on mlflow
 ![](docs/assets/screenshots/mi_3.png)
+</details>
