@@ -1,1 +1,2 @@
-kubectl apply -f k8s/pv-5gi.yaml
+kubectl apply -f k8s/pv-postgres.yaml
+chmod -R 777 /data

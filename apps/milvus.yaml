@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: milvus
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: milvus
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: 'https://zilliztech.github.io/milvus-helm'
+    targetRevision: 3.1.7
+    chart: milvus
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: cluster.enabled
+          value: 'false'
+        - name: minio.mode
+          value: standalone
+        - name: etcd.replicaCount
+          value: '1'
+        - name: pulsar.enabled
+          value: 'false'
+        - name: minio.persistence.size
+          value: 5Gi
+        - name: standalone.persistence.persistentVolumeClaim.size
+          value: 5Gi
+        - name: etcd.persistence.size
+          value: 5Gi   
+  project: default
+  syncPolicy:
+    automated: null
+    syncOptions:
+      - CreateNamespace=true

@@ -102,7 +102,14 @@ CREATE DATABASE mlflow;
 Voila!
 ![](assets/screenshots/argowf_landing.png)
 
-## 6. GOKU setup
+## 6. Milvus Setup
+1. To setup the prerequisites, run the [milvus prerequisites script](../scripts/milvus_prereq.sh). `bash scripts/milvus_prereq.sh` should get the job done.
+2. Run the command `kubectl apply -f apps/milvus.yaml` which will install MinIO as an argocd app
+3. Navigate to ArgoCD UI, select the MinIO app and click on "Sync">"Synchronize"
+4. Observe to ensure that everything gets setup correctly, including the logs of the milvus pods. Sometimes it can take a while for the pods to establish communication with each other so give it a while.
+![](assets/screenshots/milvus_argocd.png)
+
+## 7. GOKU setup
 1. Run the command `kubectl apply -f apps/goku.yaml`
 2. Navigate to ArgoCD UI, navigate to the goku app and click on "Details" then "Edit" then "Parameters" tab to replace the placeholder values with the correct values
 3. Next, click on "Sync"
