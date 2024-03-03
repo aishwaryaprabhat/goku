@@ -30,12 +30,16 @@ To run the model ingestion with the default image, follow these steps:
 
 ### Model Serving
 (WIP)
+![](docs/assets/architecture/model_serving.png)
 
 ### Vector Ingestion
 (WIP)
+![](docs/assets/architecture/vector_ingestion.png)
 
 ### End-to-end RAG Evaluation
 (WIP)
+![](docs/assets/architecture/eval.png)
 
 ### Model Monitoring
 (WIP)
+![](docs/assets/architecture/monitoring.png)
