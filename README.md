@@ -27,3 +27,15 @@ To run the model ingestion with the default image, follow these steps:
 </details>
 7. You should also be able to verify that the model artifacts have been ingested successfully using MinIO console
 ![](docs/assets/screenshots/mi_4.png)
+
+### Model Serving
+(WIP)
+
+### Vector Ingestion
+(WIP)
+
+### End-to-end RAG Evaluation
+(WIP)
+
+### Model Monitoring
+(WIP)
