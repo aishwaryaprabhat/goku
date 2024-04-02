@@ -17,7 +17,7 @@ For installation, follow the steps provided in [the setup doc](docs/installation
 
 ## Features
 ### Model Ingestion
-![](docs/assets/architecture/model_ingestion.png)--all --grace-period=0 --force
+![](docs/assets/architecture/model_ingestion.png)
 GOKU uses a customisable Argo Workflows template to download models from Hugging Face and ingest them into MLFlow.
 <details>
 <summary>How to run</summary>
