@@ -17,7 +17,7 @@ For installation, follow the steps provided in [the setup doc](docs/installation
 
 ## Features
 ### Model Ingestion
-![](docs/assets/architecture/model_ingestion.png)
+![](docs/assets/architecture/model_ingestion.png)--all --grace-period=0 --force
 GOKU uses a customisable Argo Workflows template to download models from Hugging Face and ingest them into MLFlow.
 <details>
 <summary>How to run</summary>
@@ -32,8 +32,7 @@ To run the model ingestion with the default image, follow these steps:
 ![](docs/assets/screenshots/mi_2.png)
 6. Once the workflow completes successfully, you should be able to see the model files saved as artifacts on mlflow
 ![](docs/assets/screenshots/mi_3.png)
-7. You should also be able to verify that the model artifacts have been ingested successfully using MinIO console
-![](docs/assets/screenshots/mi_4.png)
+7. You should also be able to verify that the model artifacts have been ingested successfully using MinIO console ![](docs/assets/screenshots/mi_4.png)
 </details>
 
 ### Model Serving
@@ -51,6 +50,3 @@ To run the model ingestion with the default image, follow these steps:
 ### Model Monitoring
 (WIP)
 ![](docs/assets/architecture/monitoring.png)
-
-
-docker run -it --shm-size=1g --rm -p8000:8000 -p8001:8001 -p8002:8002 -v /root/.cache/huggingface/hub/:/model_path/ -v ${PWD}/model_repository:/models nvcr.io/nvidia/tritonserver:23.08-py3 bash
