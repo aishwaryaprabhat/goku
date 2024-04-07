@@ -43,6 +43,10 @@ To run the model ingestion with the default image, follow these steps:
 (WIP)
 ![](docs/assets/architecture/vector_ingestion.png)
 
+### DREAM: Distributed RAG Experimentation & Evaluation Framework
+(WIP)
+![](docs/assets/architecture/eval.png)
+
 ### End-to-end RAG Evaluation
 (WIP)
 ![](docs/assets/architecture/eval.png)

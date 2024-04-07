@@ -12,7 +12,8 @@ kubectl -n minio port-forward svc/minio 9000 &
 kubectl -n mlflow port-forward svc/mlflow 5000 &
 kubectl -n argowf port-forward svc/argowf-argo-workflows-server 2746 &
 kubectl -n postgresql port-forward svc/postgres-postgresql 5432 &
-kubectl -n kuberay port-forward svc/kuberay-apiserver-service 8082:8888 &
+kubectl -n raycluster port-forward svc/raycluster-kuberay-head-svc 10001 &
+kubectl -n raycluster port-forward svc/raycluster-kuberay-head-svc 8265 &
 
 # psql -h localhost -p 5432 -U postgresw
 # kubectl -n <ns> delete <resource> --all --grace-period=0 --force
