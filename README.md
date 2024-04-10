@@ -44,6 +44,10 @@ To run the model ingestion with the default image, follow these steps:
 (WIP)
 ![](docs/assets/architecture/vector_ingestion.png)
 
+### DREAM: Distributed RAG Experimentation & Evaluation Framework
+(WIP)
+![](docs/assets/architecture/eval.png)
+
 ### End-to-end RAG Evaluation
 (WIP)
 ![](docs/assets/architecture/eval.png)
@@ -51,6 +55,3 @@ To run the model ingestion with the default image, follow these steps:
 ### Model Monitoring
 (WIP)
 ![](docs/assets/architecture/monitoring.png)
-
-
-docker run -it --shm-size=1g --rm -p8000:8000 -p8001:8001 -p8002:8002 -v /root/.cache/huggingface/hub/:/model_path/ -v ${PWD}/model_repository:/models nvcr.io/nvidia/tritonserver:23.08-py3 bash
