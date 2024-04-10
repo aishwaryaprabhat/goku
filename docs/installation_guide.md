@@ -92,7 +92,7 @@ CREATE DATABASE mlflow;
 ## 5. ArgoWorkflows Setup
 1. To setup ArgoWF, simply run `kubectl apply -f k8s/argocd_apps/argowf.yaml`
 2. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
-3. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
+3. Observe to ensure that everything gets setup correctly
 ![](assets/screenshots/argowf_argocd.png)
 4. Run the following command to obtain admin token required for login in the coming steps
 `kubectl -n argowf exec -it $(kubectl get pods -n argowf | grep argo-workflows-server | awk '{print $1}') -- argo auth token`
@@ -109,7 +109,21 @@ Voila!
 4. Observe to ensure that everything gets setup correctly, including the logs of the milvus pods. Sometimes it can take a while for the pods to establish communication with each other so give it a while.
 ![](assets/screenshots/milvus_argocd.png)
 
-## 7. GOKU setup
+## 7. Kube-Ray & RayCluster
+1. To setup KubeRay Operator, simply run `kubectl apply -f k8s/argocd_apps/kuberay-operator.yaml`
+2. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
+3. Observe to ensure that everything gets setup correctly
+![](assets/screenshots/rayoperator_argocd.png)
+4. To setup a KubeRay API Server, simply run `kubectl apply -f k8s/argocd_apps/kuberay-apiserver.yaml`
+5. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
+6. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
+![](assets/screenshots/kuberayapiserver_argocd.png)
+7. Next, install a RayCluster by running `kubectl apply -f k8s/argocd_apps/raycluster.yaml`
+8. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
+9. Observe to ensure that everything gets setup correctly
+![](assets/screenshots/raycluster_argocd.png)
+
+## 8. GOKU setup
 1. Run the command `kubectl apply -f k8s/argocd_apps/goku.yaml`
 2. Navigate to ArgoCD UI, navigate to the goku app and click on "Details" then "Edit" then "Parameters" tab to replace the placeholder values with the correct values
 3. Next, click on "Sync"

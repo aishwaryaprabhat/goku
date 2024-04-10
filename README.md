@@ -3,7 +3,15 @@ A reference architecture for performing Generative AI Operations (aka GenAIOps) 
 
 ![](docs/assets/screenshots/goku.webp)
 
-
+## Table of Contents
+- [Installation](#installation)
+- [Features](#features)
+  - [Model Ingestion](#model-ingestion)
+  - [Model Serving](#model-serving)
+  - [Vector Ingestion](#vector-ingestion)
+  - [End-to-end RAG Evaluation](#end-to-end-rag-evaluation)
+  - [Model Monitoring](#model-monitoring)
+  
 ## Installation
 For installation, follow the steps provided in [the setup doc](docs/installation_guide.md)
 
@@ -24,9 +32,8 @@ To run the model ingestion with the default image, follow these steps:
 ![](docs/assets/screenshots/mi_2.png)
 6. Once the workflow completes successfully, you should be able to see the model files saved as artifacts on mlflow
 ![](docs/assets/screenshots/mi_3.png)
+7. You should also be able to verify that the model artifacts have been ingested successfully using MinIO console ![](docs/assets/screenshots/mi_4.png)
 </details>
-7. You should also be able to verify that the model artifacts have been ingested successfully using MinIO console
-![](docs/assets/screenshots/mi_4.png)
 
 ### Model Serving
 (WIP)
@@ -35,6 +42,10 @@ To run the model ingestion with the default image, follow these steps:
 ### Vector Ingestion
 (WIP)
 ![](docs/assets/architecture/vector_ingestion.png)
+
+### DREAM: Distributed RAG Experimentation & Evaluation Framework
+(WIP)
+![](docs/assets/architecture/eval.png)
 
 ### End-to-end RAG Evaluation
 (WIP)

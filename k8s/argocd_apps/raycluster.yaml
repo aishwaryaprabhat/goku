@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: raycluster
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: raycluster
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: ''
+    repoURL: 'https://ray-project.github.io/kuberay-helm/'
+    targetRevision: 1.1.0
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: worker.maxReplicas
+          value: '5'
+        - name: worker.minReplicas
+          value: '2'
+        - name: worker.replicas
+          value: '2'
+        - name: worker.resources.limits.memory
+          value: '512Mi'
+    chart: ray-cluster
+  sources: []
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
