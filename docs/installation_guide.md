@@ -8,6 +8,7 @@
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 kubectl -n argocd port-forward svc/argocd-server 8080:80 &
 ```
+4. This whole setup should work fine on Minikube or any other flavour of Kubernetes. However, setting up all the components and hosting LLMs might require a little more than what your laptop can handle.
 
 ## 2. MinIO Setup
 1. To setup the prerequisites, run the [minio prerequisites script](../k8s/scripts/minio_prereq.sh). `bash k8s/scripts/minio_prereq.sh` should get the job done.

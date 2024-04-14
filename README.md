@@ -7,6 +7,7 @@ A reference architecture for performing Generative AI Operations (aka GenAIOps) 
 - [Installation](#installation)
 - [Features](#features)
   - [Model Ingestion](#model-ingestion)
+  - [Distributed RAG Experimentation](#dream-distributed-rag-experimentation-framework)
   - [Model Serving](#model-serving)
   - [Vector Ingestion](#vector-ingestion)
   - [End-to-end RAG Evaluation](#end-to-end-rag-evaluation)
@@ -18,7 +19,7 @@ For installation, follow the steps provided in [the setup doc](docs/installation
 ## Features
 ### Model Ingestion
 ![](docs/assets/architecture/model_ingestion.png)
-GOKU uses a customisable Argo Workflows template to download models from Hugging Face and ingest them into MLFlow.
+GOKU uses a customizable Argo Workflows template to download models from Hugging Face and ingest them into MLFlow.
 <details>
 <summary>How to run</summary>
 To run the model ingestion with the default image, follow these steps:
@@ -36,6 +37,11 @@ To run the model ingestion with the default image, follow these steps:
 ![](docs/assets/screenshots/mi_4.png)
 </details>
 
+### DREAM: Distributed RAG Experimentation Framework
+![](docs/assets/architecture/dream_archi.gif)
+Distributed RAG Experimentation Framework (DREAM) presents a kubernetes native architecture and sample code to demonstrate how Retrieval Augmented Generation experiments, evaluation and tracking can be conducted in a distributed manner using Ray, LlamaIndex, Ragas, MLFlow and MinIO. 
+Checkout the [DREAM README](./goku/dream/README.md) for details
+
 ### Model Serving
 (WIP)
 ![](docs/assets/architecture/model_serving.png)
@@ -43,10 +49,6 @@ To run the model ingestion with the default image, follow these steps:
 ### Vector Ingestion
 (WIP)
 ![](docs/assets/architecture/vector_ingestion.png)
-
-### DREAM: Distributed RAG Experimentation & Evaluation Framework
-(WIP)
-![](docs/assets/architecture/eval.png)
 
 ### End-to-end RAG Evaluation
 (WIP)
