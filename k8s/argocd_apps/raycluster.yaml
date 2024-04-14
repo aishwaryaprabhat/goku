@@ -4,29 +4,42 @@ metadata:
   name: raycluster
   namespace: argocd
 spec:
-  destination:
-    name: ''
-    namespace: raycluster
-    server: 'https://kubernetes.default.svc'
+  project: default
   source:
-    path: ''
     repoURL: 'https://ray-project.github.io/kuberay-helm/'
     targetRevision: 1.1.0
     helm:
       valueFiles:
         - values.yaml
       parameters:
+        - name: image.tag
+          value: 2.10.0
         - name: worker.maxReplicas
           value: '5'
         - name: worker.minReplicas
-          value: '2'
+          value: '3'
         - name: worker.replicas
-          value: '2'
+          value: '3'
+        - name: additionalWorkerGroups.smallGroup.resources.limits.memory
+          value: 5G
+        - name: head.resources.limits.memory
+          value: 7G
         - name: worker.resources.limits.memory
-          value: '512Mi'
+          value: 5G
+        - name: additionalWorkerGroups.smallGroup.resources.requests.memory
+          value: 2G
+        - name: worker.resources.requests.memory
+          value: 2G
+        - name: head.resources.requests.cpu
+          value: '1'
+        - name: head.resources.requests.memory
+          value: 5G
+        - name: head.resources.limits.cpu
+          value: '2'
     chart: ray-cluster
-  sources: []
-  project: default
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: raycluster
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
