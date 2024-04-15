@@ -2,6 +2,15 @@
 ![](assets/distributed_llama.webp)
 Distributed RAG Experimentation Framework (DREAM) is a blueprint comprising of a kubernetes native architecture and sample code to demonstrate how Retrieval Augmented Generation experiments, evaluation and tracking can be conducted in a distributed manner using Ray, LlamaIndex, Ragas, MLFlow and MinIO. 
 
+## Table of Contents
+- [Why DREAM?](#why-dream)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Code Overview](#code-overview)
+  - [Unstructured Data Preparation](#unstructured-data-preparation)
+  - [Distributed Golden Dataset Creation](#distributed-golden-dataset-creation)
+  - [Distributed RAG Experimentation, Evaluation & Tracking](#distributed-rag-experimentation-evaluation--tracking)
+
 ## Why DREAM?
 Given the myriad of options for LLMs, embedding models, retrieval methods, re-ranking methods and so on, it can be challenging to determine which combination will work best for your usecase. Who has the time to explore each combination one by one? DREAM shows you how to setup the necessary Kubernetes tooling and run the code necessary to explore the vast search space efficiently.
 
