@@ -33,7 +33,7 @@ spec:
         - name: image.repository
           value: aishwaryaprabhat/mlflow
         - name: image.tag
-          value: v2.10.2.1
+          value: v2.12.1
       values: |-
         extraEnvVars:
           MLFLOW_S3_ENDPOINT_URL: http://minio.minio.svc:9000
