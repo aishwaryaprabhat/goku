@@ -1,0 +1,4 @@
+.huggingface
+*.gguf
+*=*
+*tempdir*
