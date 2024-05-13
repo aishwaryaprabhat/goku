@@ -43,6 +43,12 @@ To run the model ingestion with the default image, follow these steps:
 Distributed RAG Experimentation Framework (DREAM) presents a kubernetes native architecture and sample code to demonstrate how Retrieval Augmented Generation experiments, evaluation and tracking can be conducted in a distributed manner using Ray, LlamaIndex, Ragas, MLFlow and MinIO. 
 Checkout the [DREAM README](./goku/dream/README.md) for details
 
+### MLBakery
+![MLBakery](goku/mlbakery/assets/mlbakery.webp)
+MLBakery is a subproject aimed at creating lightweight base images with AI/ML artefacts, especially small language models and embedding models, for easier portability. Some of the pre-built images are released as packages that can be found in the parent project's ghcr. Ideally, though, you will use the scripts to build your own images :)
+See the [README](goku/mlbakery/README.md) for more details.
+
+
 ### Model Serving
 (WIP)
 ![](docs/assets/architecture/model_serving.png)
