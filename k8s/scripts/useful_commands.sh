@@ -14,13 +14,14 @@ kubectl -n argowf port-forward svc/argowf-argo-workflows-server 2746 &
 kubectl -n postgresql port-forward svc/postgres-postgresql 5432 &
 kubectl -n raycluster port-forward svc/raycluster-kuberay-head-svc 10001 &
 kubectl -n raycluster port-forward svc/raycluster-kuberay-head-svc 8265 &
+kubectl -n raycluster port-forward svc/raycluster-kuberay-head-svc 8000 &
 
 conda activate rayvenv
 
 cd goku/goku/dream && jupyter lab --allow-root
 
 # psql -h localhost -p 5432 -U postgresw
-# kubectl -n <ns> delete <resource> --all --grace-period=0 --force
+# kubectl -n raycluster delete pods --all --grace-period=0 --force
 # fuser -k 5000/tcp && kubectl -n mlflow port-forward svc/mlflow 5000 &
 curl https://localhost:2746/api/v1/workflows/argo -H "Authorization: $ARGO_TOKEN"
 # 200 OK

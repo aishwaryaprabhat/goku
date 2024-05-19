@@ -2,7 +2,11 @@
 repo=${1:-"sentence-transformers/all-mpnet-base-v2"}
 model_name=${2:-"all-mpnet-base-v2"}
 github_username=${3:-"aishwaryaprabhat"}
-tag=ghcr.io/$github_username/mlbakery:$model_name
+version=${4:-"v1"}
+tag=ghcr.io/$github_username/mlbakery:$model_name-$version
+
+# Convert tag to lowercase
+tag=$(echo $tag | tr '[:upper:]' '[:lower:]')
 
 pip install sentence-transformers>=2.2.2
 
@@ -22,6 +26,9 @@ EOF
 
 # Build the Docker image
 docker build -f Dockerfile -t $tag $temp_dir
+
+# Push the Docker image to the repository
+docker push $tag
 
 # Clean up the temporary directory
 rm -rf $temp_dir
