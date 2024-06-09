@@ -16,9 +16,9 @@ spec:
         - name: persistence.size
           value: 15Gi
         - name: resources.requests.memory
-          value: 2Gi
+          value: 1Gi
         - name: replicas
-          value: '3'
+          value: '1'
         - name: mode
           value: standalone
         - name: securityContext.fsGroup

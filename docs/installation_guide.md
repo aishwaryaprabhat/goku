@@ -124,9 +124,4 @@ Voila!
 9. Observe to ensure that everything gets setup correctly
 ![](assets/screenshots/raycluster_argocd.png)
 
-## 8. GOKU setup
-1. Run the command `kubectl apply -f k8s/argocd_apps/goku.yaml`
-2. Navigate to ArgoCD UI, navigate to the goku app and click on "Details" then "Edit" then "Parameters" tab to replace the placeholder values with the correct values
-3. Next, click on "Sync"
-4. Observe to ensure that everything gets setup correctly
 
