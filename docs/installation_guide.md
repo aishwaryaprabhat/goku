@@ -115,13 +115,9 @@ Voila!
 2. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
 3. Observe to ensure that everything gets setup correctly
 ![](assets/screenshots/rayoperator_argocd.png)
-4. To setup a KubeRay API Server, simply run `kubectl apply -f k8s/argocd_apps/kuberay-apiserver.yaml`
+4. Next, install a RayCluster by running `kubectl apply -f k8s/argocd_apps/raycluster.yaml`
 5. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
-6. Observe to ensure that everything gets setup correctly, including the logs of the mlflow pod
-![](assets/screenshots/kuberayapiserver_argocd.png)
-7. Next, install a RayCluster by running `kubectl apply -f k8s/argocd_apps/raycluster.yaml`
-8. Navigate to ArgoCD UI and click on "Sync">"Syncrhonize"
-9. Observe to ensure that everything gets setup correctly
+6. Observe to ensure that everything gets setup correctly
 ![](assets/screenshots/raycluster_argocd.png)
 
 

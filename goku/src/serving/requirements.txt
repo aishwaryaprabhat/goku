@@ -1,7 +1,0 @@
-app
-torch
-transformers
-huggingface_hub
-accelerate
-bitsandbytes
-scipy
